@@ -2,15 +2,6 @@
 from xml.dom import minidom
 
 class Field():
-  fullName = ''
-  defaultValue = False
-  description = ''
-  externalId = False
-  label = ''
-  trackFeedHistory = False
-  trackHistory = False
-  sftype = ''
-  picklist = []
   
   def __init__(self, xmlData):
     self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue

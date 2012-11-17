@@ -12,7 +12,7 @@ def parseMetaData(fileLocation):
   for field in fieldList:
     myField = metadata.Field(field)
     pprint(vars(myField))
-    if myField.picklist:
+    if hasattr(myField, 'picklist'):
       for item in myField.picklist.picklistValues:
         print unicode(item)
     allFields.append(myField)
