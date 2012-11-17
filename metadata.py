@@ -8,12 +8,9 @@ class Field():
     sfsorted = False
 
     def __init__(self, xmlData):
-      ##self.controllingField = xmlData.getElementsByTagName('controllingField')[0].firstChild.nodeValue
-      ##self.sfsorted = xmlData.getElementsByTagName('sfsorted')[0].firstChild.nodeValue
-
-      ##print str(xmlData.getElementsByTagName('picklist')[0].getElementsByTagName('picklistValues')[0].getElementsByTagName('fullName')[0].firstChild.nodeValue)
       for picklistValue in xmlData.getElementsByTagName('picklistValues'):
-        print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
+        self.picklistValues.append(self.PicklistValue(picklistValue))
+        ##print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
 
 
     class PicklistValue():
@@ -23,6 +20,9 @@ class Field():
       def __init__(self, xmlData):
         self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
         self.default = xmlData.getElementsByTagName('default')[0].firstChild.nodeValue
+
+      def __str__(self):
+        return self.fullName
 
 
   fullName = ''
