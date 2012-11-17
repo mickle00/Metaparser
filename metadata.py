@@ -8,11 +8,12 @@ class Field():
     sfsorted = False
 
     def __init__(self, xmlData):
-      pass
       ##self.controllingField = xmlData.getElementsByTagName('controllingField')[0].firstChild.nodeValue
       ##self.sfsorted = xmlData.getElementsByTagName('sfsorted')[0].firstChild.nodeValue
-      ##for item in xmlData.getElementsByTagName('picklistValues'):
-      ##  print item.firstChild.nodeValue
+
+      ##print str(xmlData.getElementsByTagName('picklist')[0].getElementsByTagName('picklistValues')[0].getElementsByTagName('fullName')[0].firstChild.nodeValue)
+      for picklistValue in xmlData.getElementsByTagName('picklistValues'):
+        print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
 
 
     class PicklistValue():
@@ -51,10 +52,8 @@ class Field():
     if xmlData.getElementsByTagName('type'):
       self.sftype = xmlData.getElementsByTagName('type')[0].firstChild.nodeValue
     if xmlData.getElementsByTagName('picklist'):
-      print 'THIS IS IT: '
-      print str(xmlData)
-      print str(xmlData.getElementsByTagName('picklist')[0].getElementsByTagName('picklistValues')[0].getElementsByTagName('fullName')[0].firstChild.nodeValue) ##[0].firstChild.nodeValue)
-      ##self.picklist = self.Picklist(xmlData.getElementsByTagName('picklist')[0].firstChild.nodeValue)
+      ##print str(xmlData.getElementsByTagName('picklist')[0].getElementsByTagName('picklistValues')[0].getElementsByTagName('fullName')[0].firstChild.nodeValue)
+      self.picklist = self.Picklist(xmlData.getElementsByTagName('picklist')[0])
 
   def __str__(self):
     return self.fullName + '-' + self.description
