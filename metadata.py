@@ -2,29 +2,6 @@
 from xml.dom import minidom
 
 class Field():
-  class Picklist():
-    controllingField = ''
-    picklistValues = []
-    sfsorted = False
-
-    def __init__(self, xmlData):
-      for picklistValue in xmlData.getElementsByTagName('picklistValues'):
-        self.picklistValues.append(self.PicklistValue(picklistValue))
-        ##print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
-
-
-    class PicklistValue():
-      fullName = ''
-      default = False
-
-      def __init__(self, xmlData):
-        self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
-        self.default = xmlData.getElementsByTagName('default')[0].firstChild.nodeValue
-
-      def __str__(self):
-        return self.fullName
-
-
   fullName = ''
   defaultValue = False
   description = ''
@@ -57,3 +34,28 @@ class Field():
 
   def __str__(self):
     return self.fullName + '-' + self.description
+
+  class Picklist():
+    controllingField = ''
+    picklistValues = []
+    sfsorted = False
+
+    def __init__(self, xmlData):
+      ## TODO: 
+      ##self.controllingField = 
+      ##self.sfsorted = 
+      for picklistValue in xmlData.getElementsByTagName('picklistValues'):
+        self.picklistValues.append(self.PicklistValue(picklistValue))
+        ##print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
+
+    class PicklistValue():
+      fullName = ''
+      default = False
+
+      def __init__(self, xmlData):
+        self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
+        self.default = xmlData.getElementsByTagName('default')[0].firstChild.nodeValue
+
+      def __str__(self):
+        return self.fullName
+
