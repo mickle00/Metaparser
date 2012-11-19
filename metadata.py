@@ -54,10 +54,6 @@ class Field():
         self.picklistValues.append(self.PicklistValue(picklistValue))
 
     def __str__(self):
-      ##returnString = ''
-      ##for item in self.picklistValues:
-      ##  returnString += unicode(item)
-      ##return returnString
       return u';'.join([unicode(x) for x in self.picklistValues]).encode('utf8')
 
     def __repr__(self):
