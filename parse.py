@@ -16,5 +16,7 @@ def parseMetaData(fileLocation):
       for item in myField.picklist.picklistValues:
         print unicode(item)
     allFields.append(myField)
+  return allFields
 
-parseMetaData('examples/Account.object')
+def example():
+  return parseMetaData('examples/Account.object')

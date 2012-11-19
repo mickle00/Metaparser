@@ -2,6 +2,7 @@
 from xml.dom import minidom
 
 class Field():
+  description = ''
   
   def __init__(self, xmlData):
     self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
@@ -20,24 +21,33 @@ class Field():
     if xmlData.getElementsByTagName('type'):
       self.sftype = xmlData.getElementsByTagName('type')[0].firstChild.nodeValue
     if xmlData.getElementsByTagName('picklist'):
-      ##print str(xmlData.getElementsByTagName('picklist')[0].getElementsByTagName('picklistValues')[0].getElementsByTagName('fullName')[0].firstChild.nodeValue)
       self.picklist = self.Picklist(xmlData.getElementsByTagName('picklist')[0])
 
   def __str__(self):
-    return self.fullName + '-' + self.description
+    return self.fullName + '-' + self.sftype + '-' + self.description
+
+  def prettyPrint(self):
+    print self
+    if hasattr(self, 'picklist'):
+      for item in self.picklist.picklistValues:
+        print '\t' + unicode(item)
+
 
   class Picklist():
-    controllingField = ''
-    picklistValues = []
-    sfsorted = False
 
     def __init__(self, xmlData):
+      self.picklistValues = []
       ## TODO: 
       ##self.controllingField = 
       ##self.sfsorted = 
       for picklistValue in xmlData.getElementsByTagName('picklistValues'):
         self.picklistValues.append(self.PicklistValue(picklistValue))
-        ##print picklistValue.getElementsByTagName('fullName')[0].firstChild.nodeValue
+
+    def __str__(self):
+      returnString = ''
+      for item in self.picklistValues:
+        returnString += unicode(item)
+      return returnString
 
     class PicklistValue():
       fullName = ''
