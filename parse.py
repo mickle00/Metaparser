@@ -6,15 +6,15 @@ from pprint import pprint
 
 def parseMetaData(fileLocation):
   xmlDoc = minidom.parse(fileLocation)
-  print xmlDoc
+  ##print xmlDoc
   fieldList = xmlDoc.getElementsByTagName('fields')
   allFields = []
   for field in fieldList:
     myField = metadata.Field(field)
     pprint(vars(myField))
-    if hasattr(myField, 'picklist'):
-      for item in myField.picklist.picklistValues:
-        print unicode(item)
+    ##if hasattr(myField, 'picklist'):
+    ##  for item in myField.picklist.picklistValues:
+    ##    print unicode(item)
     allFields.append(myField)
   return allFields
 
