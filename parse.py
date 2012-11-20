@@ -17,6 +17,17 @@ def parseMetaData(fileLocation):
     allFields.append(myField)
   return allFields
 
+def parseListView(fileLocation):
+  xmlDoc = minidom.parse(fileLocation)
+  listViewList = xmlDoc.getElementsByTagName('listViews')
+  allListViews = []
+  for listView in listViewList:
+    sObject = sObjectNameFromFile(fileLocation)
+    myListView = metadata.ListView(sObject,listView)
+    myListView.insert()
+    allListViews.append(myListView)
+  return allListViews
+
 def sObjectNameFromFile(fileLocation):
   return os.path.basename(fileLocation).replace('.object','')
 
@@ -24,6 +35,7 @@ def parseAll():
   sObjects = glob.glob('examples/*.object')
   for fileName in sObjects:
     parseMetaData(fileName)
+    parseListView(fileName)
 
 def example():
   parseMetaData('examples/Account.object')

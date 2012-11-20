@@ -138,4 +138,61 @@ class Field(Base):
       def __repr__(self):
         return self.fullName
 
+class ListView(Base):
+  __tablename__ = 'listviews'
+  sObjectView = Column(Unicode(255), primary_key=True)
+  sObject = Column(Unicode(255))
+  fullName = Column(Unicode(255))
+  label = Column(Unicode(255))
+  filterScope = Column(Unicode(255))
+
+  def __init__(self, sObject, xmlData):
+    self.sObject = sObject
+    self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
+    self.label = xmlData.getElementsByTagName('label')[0].firstChild.nodeValue
+    self.filterScope = xmlData.getElementsByTagName('filterScope')[0].firstChild.nodeValue
+    self.sObjectView = sObject + ':' + self.fullName
+    self.columns = []
+    columnCount = 1
+    for column in xmlData.getElementsByTagName('columns'):
+      self.columns.append(self.Column(self.fullName, column, columnCount))
+      columnCount += 1
+
+  def insert(self):
+    session = Session()
+    ## BRING OBJECTS INTO MEMORY.
+    ## Similiar to upserting with merge() call
+    session.query(ListView).all()
+    session.query(ListView.Column).all()
+    session.merge(self)
+    if hasattr(self, 'columns'):
+      for column in self.columns:
+        session.merge(column)
+    session.commit()
+
+  def __str__(self):
+    return self.sObjectView
+  def __rep__(self):
+    return self.sObjectView
+
+  class Column(Base):
+    __tablename__ = 'listview_columns'
+    sObjectViewColumn = Column(Unicode(255), primary_key=True)
+    columnName = Column(Unicode(255))
+    order = Column(Integer)
+
+    listview_id = Column(Unicode(255), ForeignKey('listviews.sObjectView'))
+    listview = relationship("ListView", backref=backref('columns'))
+
+    def __init__(self, sObjectView, xmlData, order):
+      self.columnName = xmlData.firstChild.nodeValue
+      self.sObjectViewColumn = sObjectView + ':' + self.columnName
+      self.order = order
+
+    def __str__(self):
+      return self.sObjectViewColumn
+
+    def __rep__(self):
+      return self.sObjectViewColumn
+
 Base.metadata.create_all(engine)
