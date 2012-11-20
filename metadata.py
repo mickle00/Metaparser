@@ -14,6 +14,7 @@ Base = declarative_base()
 class Field(Base):
   __tablename__ = 'fields'
   sObjectField = Column(Unicode(255), primary_key=True)
+  sObject= Column(Unicode(255))
   fullName = Column(Unicode(255))
   sftype = Column(Unicode(255))
   description = Column(Unicode(400))
@@ -25,6 +26,7 @@ class Field(Base):
   def __init__(self, sObject, xmlData):
     self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
     self.sObjectField = sObject + '.' + self.fullName
+    self.sObject = sObject
     if xmlData.getElementsByTagName('defaultValue'):
       if xmlData.getElementsByTagName('defaultValue')[0].firstChild.nodeValue == 'true':
         self.defaultValue = True
