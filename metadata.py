@@ -16,7 +16,7 @@ class Field(Base):
   sObjectField = Column(Unicode(255), primary_key=True)
   fullName = Column(Unicode(255))
   sftype = Column(Unicode(255))
-  description = Column(Unicode(255))
+  description = Column(Unicode(400))
   externalId = Column(Boolean)
   trackFeeddHistory = Column(Boolean)
   trackHistory = Column(Boolean)
@@ -61,10 +61,16 @@ class Field(Base):
 
   def insert(self):
     session = Session()
-    session.add(self)
+    ## BRING OBJECTS INTO MEMORY.
+    ## Similiar to upserting with merge() call
+    session.query(Field).all()
+    session.query(Field.Picklist).all()
+    session.query(Field.Picklist.PicklistValue).all()
+    session.merge(self)
     if hasattr(self, 'picklist'):
-      session.add(self.picklist)
-      session.add_all(self.picklist.picklistValues)
+      session.merge(self.picklist)
+      for picklistValue in self.picklist.picklistValues:
+        session.merge(picklistValue)
     session.commit()
 
   class Picklist(Base):
