@@ -23,6 +23,18 @@ class Field(Base):
   trackHistory = Column(Boolean)
   label = Column(Unicode(255))
 
+  ### TODO:
+  ### Add Fields
+  ### --Formula
+  ### --FormulaTreatBlanksAs
+  ### --ReferenceTo
+  ### --RelationshipLabel
+  ### --RelationshipName
+  ### --Required
+  ### --Unique
+  ### --DeleteContraint
+  ### --Length
+
   def __init__(self, sObject, xmlData):
     self.fullName = xmlData.getElementsByTagName('fullName')[0].firstChild.nodeValue
     self.sObjectField = sObject + '.' + self.fullName

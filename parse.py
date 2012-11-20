@@ -3,17 +3,22 @@ from xml.dom import minidom
 import glob
 import metadata
 from pprint import pprint
+import os.path
 
 def parseMetaData(fileLocation):
   xmlDoc = minidom.parse(fileLocation)
   fieldList = xmlDoc.getElementsByTagName('fields')
   allFields = []
   for field in fieldList:
-    myField = metadata.Field('Account',field)
+    sObject = sObjectNameFromFile(fileLocation)
+    myField = metadata.Field(sObject,field)
     myField.insert()
     #pprint(vars(myField))
     allFields.append(myField)
   return allFields
+
+def sObjectNameFromFile(fileLocation):
+  return os.path.basename(fileLocation).replace('.object','')
 
 def example():
   parseMetaData('examples/Account.object')
