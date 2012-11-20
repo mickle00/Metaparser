@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A Requirement linked to a Project</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Actual_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>Admin_Actual_Hours__c +  Dev_Actual_Hours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Actual Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Actual_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Admin Actual Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Impacted_Team_Count__c  &gt;0 &amp;&amp; Impacted_Team_Count__c  = Impacted_Teams_Approved__c , 1, 
+IF( Impacted_Teams_Rejected__c &gt;0, 0, -1)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approval Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Requirements_User</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>If Requirement is linked to a Case (sustainment item), link here.</inlineHelpText>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Requirements</relationshipLabel>
+        <relationshipName>Requirements</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Current_Assigned_To_Viewing__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Assigned_To__c =  $User.Id, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Assigned To Viewing</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Short description of the Requirement. Could be in the style of a User Story, Use Case, etc.</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>255</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Detailed_Requirement__c</fullName>
+        <description>Field to enter the detailed requirement and support examples</description>
+        <externalId>false</externalId>
+        <label>Detailed Requirement</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dev_Actual_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Dev Actual Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Efficiency_Impact__c</fullName>
+        <description>Field to indicate savings estimate for Efficiency Initiative requirements</description>
+        <externalId>false</externalId>
+        <label>Efficiency Impact</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Est_Hours_Admin__c</fullName>
+        <description>Estimated hours for configuration/documentation/training.</description>
+        <externalId>false</externalId>
+        <label>Admin Est Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estimated_Hours_Dev__c</fullName>
+        <description>Estimated hours for development and Unit Testing.</description>
+        <externalId>false</externalId>
+        <label>Dev Est Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estimated_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>Est_Hours_Admin__c  +  Estimated_Hours_Dev__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Estimated Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Impacted_Team_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Impacted Team Count</label>
+        <summaryForeignKey>Impacted_Team__c.Requirement__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Impacted_Teams_Approved__c</fullName>
+        <externalId>false</externalId>
+        <label>Impacted Teams Approved</label>
+        <summaryFilterItems>
+            <field>Impacted_Team__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Impacted_Team__c.Requirement__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Impacted_Teams_Rejected__c</fullName>
+        <externalId>false</externalId>
+        <label>Impacted Teams Rejected</label>
+        <summaryFilterItems>
+            <field>Impacted_Team__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Impacted_Team__c.Requirement__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PM_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>PM Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yellow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project__r.Project_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <externalId>false</externalId>
+        <label>Project</label>
+        <referenceTo>PM_Project__c</referenceTo>
+        <relationshipLabel>Requirements</relationshipLabel>
+        <relationshipName>Requirements</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <referenceTo>PM_Release__c</referenceTo>
+        <relationshipLabel>Requirements</relationshipLabel>
+        <relationshipName>Requirements</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Requirement_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+
+CASE(PM_Status__c, 
+&quot;Green&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Yellow&quot;, &quot;/img/samples/light_yellow.gif&quot;,
+&quot;Red&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;status color&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Requirement Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resources__c</fullName>
+        <description>Used to store the resources updated to satisfy this requirement. (Classes, VR, WF, Triggers, etc.)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Store the resources updated to satisfy this requirement. (Classes, VR, WF, Triggers, etc.)</inlineHelpText>
+        <label>Resources</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Used to track the lifecycle of a requirement from Identification, through Testing to Deployment</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready For QA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Defect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready For UAT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verified for Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not a Requirement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Test_Cases__c</fullName>
+        <description>The Test Cases used to Satisfy this requirement</description>
+        <externalId>false</externalId>
+        <label>Test Cases</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <label>Requirement</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Requirement_Status__c</columns>
+        <columns>Estimated_Hours__c</columns>
+        <columns>Assigned_To__c</columns>
+        <columns>Status__c</columns>
+        <columns>Project__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Requirements</fullName>
+        <columns>Project_Name__c</columns>
+        <columns>Project__c</columns>
+        <columns>NAME</columns>
+        <columns>Requirement_Status__c</columns>
+        <columns>Description__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Estimated_Hours__c</columns>
+        <columns>Assigned_To__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Current_Assigned_To_Viewing__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled,Duplicate,Not a Requirement</value>
+        </filters>
+        <label>My Open Requirements</label>
+    </listViews>
+    <listViews>
+        <fullName>Requirements_In_Process</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Description__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Estimated_Hours__c</columns>
+        <columns>Assigned_To__c</columns>
+        <columns>Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>New,Cancelled,Duplicate,Not a Requirement,Completed</value>
+        </filters>
+        <label>Requirements In Process</label>
+    </listViews>
+    <nameField>
+        <displayFormat>REQ-{00000}</displayFormat>
+        <label>Requirement Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Requirements</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assigned_To__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Assigned_To__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assigned_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Completed_Req_Must_have_Actual_Hours</fullName>
+        <active>true</active>
+        <description>Completed Requirement must have Actual Hours assigned</description>
+        <errorConditionFormula>AND (
+ISPICKVAL(Status__c , &apos;Completed&apos;) ,
+Actual_Hours__c =0
+)</errorConditionFormula>
+        <errorMessage>You must indicate Actual Hours completed in order to Complete this Requirement</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Release_Must_Be_Required_Requirement</fullName>
+        <active>true</active>
+        <description>Make Release required to &quot;Verified for Deployment or Completed&quot; a Requirement</description>
+        <errorConditionFormula>AND (
+OR (
+        ISPICKVAL(Status__c , &apos;Verified for Deployment&apos;) ,
+        ISPICKVAL(Status__c , &apos;Completed&apos;)
+       ),
+Release__c = null
+)</errorConditionFormula>
+        <errorDisplayField>Release__c</errorDisplayField>
+        <errorMessage>Release required to &quot;Verified for Deployment or Completed&quot; a Requirement !</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Requirement_Must_have_an_Assigned_To</fullName>
+        <active>true</active>
+        <description>Requirement must have an assigned to when open.</description>
+        <errorConditionFormula>AND (
+AND(
+NOT( ISPICKVAL( Status__c , &apos;New&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Cancelled&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Not a Requirement&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Duplicate&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;On Hold&apos;) )
+),
+ ISBLANK( Assigned_To__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Assigned_To__c</errorDisplayField>
+        <errorMessage>You must select an Assigned To in this Status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Requirement_Must_have_an_Impacted_Team</fullName>
+        <active>true</active>
+        <description>Requirement must have at least one Impacted Team identified when open.</description>
+        <errorConditionFormula>AND (
+AND(
+NOT( ISPICKVAL( Status__c , &apos;New&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Cancelled&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Not a Requirement&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;Duplicate&apos;) ),
+NOT( ISPICKVAL( Status__c , &apos;On Hold&apos;) )
+),
+ Impacted_Team_Count__c = 0
+)</errorConditionFormula>
+        <errorMessage>You must select an Impacted Team</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Submit_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Submit Approval</masterLabel>
+        <openType>sidebar</openType>
+        <page>PM_RequirementApproval</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

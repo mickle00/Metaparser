@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Base_Room__c</fullName>
+        <externalId>false</externalId>
+        <label>Base Room</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Base_Allocation_Ends__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Base Allocation Ends</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Base_Allocation_Starts__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Base Allocation Starts</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>GSO_Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>GSO Contract</label>
+        <referenceTo>GSOContract__c</referenceTo>
+        <relationshipLabel>Room Type Contracts</relationshipLabel>
+        <relationshipName>Room_Type_Contracts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Room_Type_Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Room Type Contract</label>
+        <referenceTo>Room_Type_Contract__c</referenceTo>
+        <relationshipLabel>Room Type Contracts</relationshipLabel>
+        <relationshipName>Room_Type_Contracts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Room_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Room Type</label>
+        <referenceTo>Room_Type__c</referenceTo>
+        <relationshipLabel>Room Type Contracts</relationshipLabel>
+        <relationshipName>Room_Type_Contracts</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Room Type Contract</label>
+    <nameField>
+        <displayFormat>RTC-{000000}</displayFormat>
+        <label>Room Type Contract Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Room Type Contracts</pluralLabel>
+    <recordTypes>
+        <fullName>Base_Allocation</fullName>
+        <active>true</active>
+        <label>Base Allocation</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Base_Allocation_Exception</fullName>
+        <active>true</active>
+        <label>Base Allocation Exception</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

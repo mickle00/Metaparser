@@ -1,0 +1,1613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A collaborative enterprise which has a planned goal. A project can have many child projects and requirements.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AHT_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AHT Improvement?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Hours__c</fullName>
+        <description>Rollup Actual Effort from Requirements to Project</description>
+        <externalId>false</externalId>
+        <label>Actual Hours</label>
+        <summarizedField>PM_Requirement__c.Actual_Hours__c</summarizedField>
+        <summaryFilterItems>
+            <field>PM_Requirement__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Cancelled, Duplicate, Not a Requirement</value>
+        </summaryFilterItems>
+        <summaryForeignKey>PM_Requirement__c.Project__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Business_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Business Owner</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects_BusinessOwner</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects_Case</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Original_Request__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <description>Original request date; if a case was filed, this is the original date the case was filed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Original request date of the project; if a case was filed, this is the original date the case was filed.</inlineHelpText>
+        <label>Date of Original Request</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deadline__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The date by which the project is scheduled to be completed by.</inlineHelpText>
+        <label>Deadline</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>A general description of the project.</inlineHelpText>
+        <label>Description</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Developer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Primary developer resource for a given project</description>
+        <externalId>false</externalId>
+        <label>Developer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects_Developer</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Efficiency_Impact__c</fullName>
+        <description>Field to indicate savings estimate for Efficiency Initiative projects</description>
+        <externalId>false</externalId>
+        <label>Efficiency Impact</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Email_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Email Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reply Received</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Hours__c</fullName>
+        <description>Rollup Estimated Effort from Requirements to Project</description>
+        <externalId>false</externalId>
+        <label>Estimated Hours</label>
+        <summarizedField>PM_Requirement__c.Estimated_Hours__c</summarizedField>
+        <summaryForeignKey>PM_Requirement__c.Project__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>External_Dependencies__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Examples:  WinSup, AMT, PSG Salesforce, EDW</inlineHelpText>
+        <label>Considerations / External Dependencies</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Kickoff__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What date should this project start?</inlineHelpText>
+        <label>Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Level_of_Effort__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Small &lt; 2 weeks
+Medium 3-5 weeks
+Large 6-8 weeks
+Extra-Large &gt;8 weeks</inlineHelpText>
+        <label>Level of Effort</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Small</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Large</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extra-Large</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>OpenRequirements__c</fullName>
+        <externalId>false</externalId>
+        <label>OpenRequirements</label>
+        <summaryFilterItems>
+            <field>PM_Requirement__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed, Cancelled, Not a Requirement, Duplicate</value>
+        </summaryFilterItems>
+        <summaryForeignKey>PM_Requirement__c.Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PM_Release__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <referenceTo>PM_Release__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PM_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>PM Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yellow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Parent_PM_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent Project</label>
+        <referenceTo>PM_Project__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Parent_PM_Project__r.Project_Name__c</formula>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No Priority</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Pipeline__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Pipeline</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Main Project Pipeline</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ad hoc / FIFO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Release_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifies the Project Release type, this will determine when you can add requirements from a case to an existing project.</inlineHelpText>
+        <label>Project Release Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Ad Hoc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Case Conversion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Child Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency Initiative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infrastructure Updates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Management / Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production Fix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Steering Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+
+CASE(PM_Status__c, 
+&quot;Green&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Yellow&quot;, &quot;/img/samples/light_yellow.gif&quot;,
+&quot;Red&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;status color&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom Object  - New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom Object - Revision</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Enhancement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Group Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web Intake Form</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workflow Enhancement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Requester__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Requester</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects_Requestor</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The current status of the project.</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discovery/Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dev/Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Converted to Requirement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Team__c</fullName>
+        <externalId>false</externalId>
+        <label>Team</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Destination Experiences</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FinOps</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GSO - Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GSO - GLO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GSO - Lodging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GSO - Systems</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transport</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UAT__c</fullName>
+        <externalId>false</externalId>
+        <label>UAT</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Project</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Date_of_Original_Request__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Developer__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Team__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Active</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Team__c</columns>
+        <columns>PM_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Developer__c</columns>
+        <columns>Estimated_Hours__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>,Completed,Cancelled,Converted to Requirement</value>
+        </filters>
+        <label>All - Active</label>
+        <sharedTo>
+            <group>Administrators</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Backlog_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>PM_Release__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Release_Type__c</field>
+            <operation>equals</operation>
+            <value>Backlog</value>
+        </filters>
+        <label>Backlog Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>Completed</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Status__c</columns>
+        <columns>Team__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <label>Completed</label>
+    </listViews>
+    <listViews>
+        <fullName>Efficiency_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>Parent_Project_Name__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Name__c</field>
+            <operation>contains</operation>
+            <value>Efficiency</value>
+        </filters>
+        <label>Efficiency Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Active_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Team__c</columns>
+        <columns>Deadline__c</columns>
+        <columns>Status__c</columns>
+        <columns>Requester__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled,On Hold,Converted to Requirement</value>
+        </filters>
+        <label>My Active Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>Open_Master_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Date_of_Original_Request__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Developer__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Team__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>PM_Project__c.Master_Project</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled</value>
+        </filters>
+        <label>Open Master Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Content</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>equals</operation>
+            <value>Content</value>
+        </filters>
+        <label>Projects - Content</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Content_Completed</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Parent_Project_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>contains</operation>
+            <value>Content</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed,Cancelled</value>
+        </filters>
+        <label>Projects - Content - Completed</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Content_Efficiency</fullName>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Parent_Project_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>contains</operation>
+            <value>Content</value>
+        </filters>
+        <filters>
+            <field>Parent_Project_Name__c</field>
+            <operation>contains</operation>
+            <value>Efficiency</value>
+        </filters>
+        <filters>
+            <field>Project_Name__c</field>
+            <operation>contains</operation>
+            <value>Efficiency</value>
+        </filters>
+        <label>Projects - Content - Efficiency</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Content_Open</fullName>
+        <columns>Project_Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Requester__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <columns>Parent_Project_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>contains</operation>
+            <value>Content</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled</value>
+        </filters>
+        <filters>
+            <field>Parent_Project_Name__c</field>
+            <operation>notContain</operation>
+            <value>Efficiency</value>
+        </filters>
+        <label>Projects - Content - Open</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_FinOps</fullName>
+        <columns>NAME</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>equals</operation>
+            <value>Finance</value>
+        </filters>
+        <label>Projects - FinOps</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_GSO_Systems</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>equals</operation>
+            <value>GSO Systems</value>
+        </filters>
+        <label>Projects - GSO Systems</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Lodging</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Estimated_Hours__c</columns>
+        <columns>Priority__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Status__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Deadline__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>equals</operation>
+            <value>Lodging</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>,Completed,Cancelled,Converted to Requirement</value>
+        </filters>
+        <label>Projects - Lodging</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Transport</fullName>
+        <columns>NAME</columns>
+        <columns>Requester__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Team__c</field>
+            <operation>equals</operation>
+            <value>Transport</value>
+        </filters>
+        <label>Projects - Transport</label>
+    </listViews>
+    <listViews>
+        <fullName>Projects_Unassigned</fullName>
+        <columns>NAME</columns>
+        <columns>Level_of_Effort__c</columns>
+        <columns>Requester__c</columns>
+        <columns>Project_Pipeline__c</columns>
+        <columns>Date_of_Original_Request__c</columns>
+        <columns>Project_Type__c</columns>
+        <columns>Team__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Developer__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>gsosfdc</value>
+        </filters>
+        <label>Projects - Unassigned</label>
+    </listViews>
+    <listViews>
+        <fullName>Sustainment_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Name__c</columns>
+        <columns>PM_Release__c</columns>
+        <columns>Deadline__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Release_Type__c</field>
+            <operation>equals</operation>
+            <value>Sustainment</value>
+        </filters>
+        <label>Sustainment Projects</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PROJ-{00000}</displayFormat>
+        <label>Project</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Projects</pluralLabel>
+    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Master_Project</fullName>
+        <active>true</active>
+        <description>Master Project Record Type</description>
+        <label>Master Project</label>
+        <picklistValues>
+            <picklist>Efficiency_Impact__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Email_Status__c</picklist>
+            <values>
+                <fullName>Reply Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Effort__c</picklist>
+            <values>
+                <fullName>Extra-Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Priority</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Pipeline__c</picklist>
+            <values>
+                <fullName>Ad hoc %2F FIFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main Project Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Release_Type__c</picklist>
+            <values>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Source__c</picklist>
+            <values>
+                <fullName>Ad Hoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Case Conversion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency Initiative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Infrastructure Updates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management %2F Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Fix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering Meeting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Type__c</picklist>
+            <values>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Object  - New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Object - Revision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Enhancement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Group Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Intake Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workflow Enhancement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Converted to Requirement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deep Dive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dev%2FTest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery%2FPlanning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAT</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Team__c</picklist>
+            <values>
+                <fullName>Destination Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FinOps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - GLO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Lodging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UAT__c</picklist>
+            <values>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Project</fullName>
+        <active>true</active>
+        <description>Individual Project Record Type</description>
+        <label>Project</label>
+        <picklistValues>
+            <picklist>Efficiency_Impact__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Email_Status__c</picklist>
+            <values>
+                <fullName>Reply Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Effort__c</picklist>
+            <values>
+                <fullName>Extra-Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PM_Status__c</picklist>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yellow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Priority</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Pipeline__c</picklist>
+            <values>
+                <fullName>Ad hoc %2F FIFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main Project Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Release_Type__c</picklist>
+            <values>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Source__c</picklist>
+            <values>
+                <fullName>Ad Hoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Case Conversion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency Initiative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Infrastructure Updates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management %2F Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Fix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steering Meeting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Type__c</picklist>
+            <values>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Object  - New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Object - Revision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Enhancement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Group Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Intake Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workflow Enhancement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Converted to Requirement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deep Dive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dev%2FTest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery%2FPlanning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAT</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Team__c</picklist>
+            <values>
+                <fullName>Destination Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FinOps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - GLO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Lodging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GSO - Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transport</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UAT__c</picklist>
+            <values>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.FIRST_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.LAST_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Deadline__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Project_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.FIRST_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.LAST_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Deadline__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>OWNER.FIRST_NAME</searchFilterFields>
+        <searchFilterFields>OWNER.LAST_NAME</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>Deadline__c</searchFilterFields>
+        <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Deadline__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Case_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND ( 
+ISPICKVAL(Project_Source__c, &quot;Case Conversion&quot;),
+ISBLANK(Case__c )
+)</errorConditionFormula>
+        <errorMessage>Case number is required!</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Kickoff_before_deadline</fullName>
+        <active>false</active>
+        <description>Kickoff must be less or equal than the deadline</description>
+        <errorConditionFormula>NOT(ISNULL(Kickoff__c)) &amp;&amp; NOT(ISNULL(Deadline__c)) &amp;&amp; Deadline__c &lt; Kickoff__c</errorConditionFormula>
+        <errorDisplayField>Kickoff__c</errorDisplayField>
+        <errorMessage>Kickoff must be less or equal than the deadline</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Parent_Case_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND ( 
+ISPICKVAL(Project_Source__c, &quot;Child Project&quot;),
+ISBLANK( Parent_PM_Project__c)
+)</errorConditionFormula>
+        <errorDisplayField>Parent_PM_Project__c</errorDisplayField>
+        <errorMessage>Parent Project is required!</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Generate_Project_Doc</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Generate Project Doc</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/PM_GenerateDocumentation?docType=proj&amp;id={!PM_Project__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Email</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Email</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>location.replace(&apos;/email/author/emailauthor.jsp?retURL=/apex/ProjectEmailSend?id={!PM_Project__c.Id}&amp;p3_lkid={!PM_Project__c.Id}&amp;template_id=00XC0000001cqOp&amp;p5=&amp;p26=gsosfsup@expedia.com&apos;);</url>
+    </webLinks>
+</CustomObject>

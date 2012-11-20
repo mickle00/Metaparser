@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object captures all the survey results</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Expedia_Survey__c</fullName>
+        <externalId>false</externalId>
+        <label>Expedia Survey</label>
+        <referenceTo>Expedia_Survey__c</referenceTo>
+        <relationshipLabel>Survey Submissions</relationshipLabel>
+        <relationshipName>Survey_Submissions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Participant_Email__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Participant Email Address</inlineHelpText>
+        <label>Participant Email</label>
+        <required>false</required>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Participate_In_Focus_Group__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether the user would like to participate in a focus group or job shadowing</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate whether or not you are interested in participating in focus groups or job shadowing.</inlineHelpText>
+        <label>Participate In Focus Group</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Survey Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Survey Submissions</relationshipLabel>
+        <relationshipName>Survey_Submissions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Duration_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Survey_End_Time__c - Survey_Start_Time__c) * 86400</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Survey Duration Time</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Survey_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey End Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey Language</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Survey_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey Start Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Taken_By_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Survey Taken By Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Survey Submissions</relationshipLabel>
+        <relationshipName>Survey_Submissions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used on the efficiency survey</description>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Survey_Submissions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <label>Survey Submission</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Expedia_Survey__c</columns>
+        <columns>Survey_Case__c</columns>
+        <columns>Survey_Language__c</columns>
+        <columns>User__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>SS-{000000}</displayFormat>
+        <label>Survey Submission Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Survey Submissions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

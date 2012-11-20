@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>DX_Project_Checklist__c</fullName>
+        <externalId>false</externalId>
+        <label>DX Project Checklist</label>
+        <referenceTo>DXProjChecklist__c</referenceTo>
+        <relationshipLabel>DX Project Details</relationshipLabel>
+        <relationshipName>DX_Project_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Checklist_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Checklist Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Local Experiences Xchange Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local Access Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local Custom Link Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local Expert Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operating Partner Implemenation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Type Detail</label>
+        <picklist>
+            <controllingField>Type__c</controllingField>
+            <picklistValues>
+                <fullName>Logo File Name</fullName>
+                <controllingFieldValues>Logo, Background and Colors</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Background File Name/Color</fullName>
+                <controllingFieldValues>Logo, Background and Colors</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Requested Hero</fullName>
+                <controllingFieldValues>Home Page Images</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Requested Featured Offering</fullName>
+                <controllingFieldValues>Home Page Images</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offer or Category</fullName>
+                <controllingFieldValues>Offer Restrictions</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Color</fullName>
+                <controllingFieldValues>Logo, Background and Colors</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staging key</fullName>
+                <controllingFieldValues>Staging</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Media Vault</fullName>
+                <controllingFieldValues>Vault</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Activity Vault</fullName>
+                <controllingFieldValues>Vault</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Editorial Vault</fullName>
+                <controllingFieldValues>Vault</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Client Reference ID</fullName>
+                <controllingFieldValues>API</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supported Language</fullName>
+                <controllingFieldValues>Localization</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Currency</fullName>
+                <controllingFieldValues>Localization</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Support Language</fullName>
+                <controllingFieldValues>Customer Support</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Supply</fullName>
+                <controllingFieldValues>Supply</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <controllingField>Project_Checklist_Type__c</controllingField>
+            <picklistValues>
+                <fullName>Logo, Background and Colors</fullName>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Page Images</fullName>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offer Restrictions</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staging</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vault</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>API</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Localization</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Support</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supply</fullName>
+                <controllingFieldValues>Local Custom Link Implementation</controllingFieldValues>
+                <controllingFieldValues>Local Experiences Xchange Implementation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>DX Project Detail</label>
+    <nameField>
+        <displayFormat>CHKDTL-{00000}</displayFormat>
+        <label>DX Project Detail Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>DX Project Details</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>New_DX_Project_Detail</fullName>
+        <availability>online</availability>
+        <description>Used for New Project Details from a Checklist</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New DX Project Detail</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/DXProjectDetail?cl={!DXProjChecklist__c.Id}&amp;clt={!DXProjChecklist__c.RecordType}&amp;retURL={!DXProjChecklist__c.Id}</url>
+    </webLinks>
+</CustomObject>
