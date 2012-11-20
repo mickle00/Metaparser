@@ -19,7 +19,7 @@ class Field(Base):
   sftype = Column(Unicode(255))
   description = Column(Unicode(400))
   externalId = Column(Boolean)
-  trackFeeddHistory = Column(Boolean)
+  trackFeedHistory = Column(Boolean)
   trackHistory = Column(Boolean)
   label = Column(Unicode(255))
 

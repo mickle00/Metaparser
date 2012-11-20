@@ -20,6 +20,11 @@ def parseMetaData(fileLocation):
 def sObjectNameFromFile(fileLocation):
   return os.path.basename(fileLocation).replace('.object','')
 
+def parseAll():
+  sObjects = glob.glob('examples/*.object')
+  for fileName in sObjects:
+    parseMetaData(fileName)
+
 def example():
   parseMetaData('examples/Account.object')
   #print metadata.engine.execute("select count(*) from fields").scalar()
